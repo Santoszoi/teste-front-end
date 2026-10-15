@@ -36,7 +36,19 @@ export default function App() {
 
   const filtered = useMemo(() => products.filter((product) => {
     const matchesSearch = `${product.name} ${product.description}`.toLocaleLowerCase('pt-BR').includes(search.toLocaleLowerCase('pt-BR'));
-    const matchesCategory = activeCategory === 'Todas Categorias' || product.category?.toLocaleLowerCase('pt-BR') === activeCategory.toLocaleLowerCase('pt-BR');
+    const category = activeCategory.toLocaleLowerCase('pt-BR');
+    const productCategory = product.category?.toLocaleLowerCase('pt-BR') ?? '';
+    const productName = product.name.toLocaleLowerCase('pt-BR');
+    const categoryTerms: Record<string, RegExp> = {
+      celular: /\\b(iphone|smartphone|celular|galaxy|motorola|moto g|redmi|poco|xiaomi)\\b/i,
+      acessórios: /\\b(acessório|acessorio|capa|carregador|fone|headphone|airpods|película|pelicula|cabo usb)\\b/i,
+      tablets: /\\b(tablet|ipad|galaxy tab)\\b/i,
+      notebooks: /\\b(notebook|laptop|macbook|chromebook)\\b/i,
+      tvs: /\\b(tv|televisor|smart tv)\\b/i,
+    };
+    const matchesCategory = category === 'todas categorias' ||
+      productCategory === category ||
+      (categoryTerms[category]?.test(productName) ?? false);
     return matchesSearch && matchesCategory;
   }), [products, search, activeCategory]);
 
