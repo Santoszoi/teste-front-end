@@ -1,6 +1,6 @@
 import type { Product } from '../types/product';
 
-export const PRODUCTS_URL = 'https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json';
+export const PRODUCTS_URL = '/api/produtos';
 
 type RecordValue = Record<string, unknown>;
 
