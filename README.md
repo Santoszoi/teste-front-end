@@ -33,7 +33,7 @@ npm run preview
 ## Funcionalidades
 
 - Vitrine alimentada pelo JSON disponibilizado no enunciado.
-- Busca por nome e descrição, filtro por categoria (quando presente no JSON) e paginação.
+- Busca por nome e descrição, filtro por categoria (exibe lista vazia quando não há itens correspondentes) e paginação.
 - Modal de detalhes do produto, com imagem, preço, descrição e controle de quantidade.
 - Estados de carregamento, falha com opção de tentar novamente e lista vazia.
 - Layout adaptado para desktop, tablet e celular.
@@ -41,11 +41,11 @@ npm run preview
 
 ## Integração
 
-O catálogo é carregado diretamente de:
+O catálogo oficial é obtido de:
 
 `https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json`
 
-A camada `src/services/products.ts` valida e normaliza o JSON antes de enviar os dados para a interface. É necessário que o servidor de origem esteja disponível e permita acesso via navegador (CORS). Nenhum produto fictício é exibido quando a requisição falha.
+No desenvolvimento, o Vite encaminha `/api/produtos` ao servidor oficial para evitar restrições de CORS. Durante `npm run build`, o Vite obtém uma cópia do JSON oficial e a inclui em `dist/api/produtos`, permitindo hospedar a pasta `dist` como site estático. A máquina que executa o build precisa ter acesso à URL oficial. A versão publicada usa o catálogo capturado no momento da compilação; para atualizá-lo, faça um novo build. A camada `src/services/products.ts` valida e normaliza os dados. Nenhum produto fictício é exibido quando a requisição falha.
 
 ## Estrutura
 
