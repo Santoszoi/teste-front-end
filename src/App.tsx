@@ -40,11 +40,11 @@ export default function App() {
     const productCategory = product.category?.toLocaleLowerCase('pt-BR') ?? '';
     const productName = product.name.toLocaleLowerCase('pt-BR');
     const categoryTerms: Record<string, RegExp> = {
-      celular: /\\b(iphone|smartphone|celular|galaxy|motorola|moto g|redmi|poco|xiaomi)\\b/i,
-      acessórios: /\\b(acessório|acessorio|capa|carregador|fone|headphone|airpods|película|pelicula|cabo usb)\\b/i,
-      tablets: /\\b(tablet|ipad|galaxy tab)\\b/i,
-      notebooks: /\\b(notebook|laptop|macbook|chromebook)\\b/i,
-      tvs: /\\b(tv|televisor|smart tv)\\b/i,
+      celular: /\b(iphone|smartphone|celular|galaxy|motorola|moto g|redmi|poco|xiaomi)\b/i,
+      acessórios: /\b(acessório|acessorio|capa|carregador|fone|headphone|airpods|película|pelicula|cabo usb)\b/i,
+      tablets: /\b(tablet|ipad|galaxy tab)\b/i,
+      notebooks: /\b(notebook|laptop|macbook|chromebook)\b/i,
+      tvs: /\b(tv|televisor|smart tv)\b/i,
     };
     const matchesCategory = category === 'todas categorias' ||
       productCategory === category ||
