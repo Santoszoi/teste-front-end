@@ -7,6 +7,7 @@ type Props = { product: Product; onClose: () => void };
 
 export function ProductModal({ product, onClose }: Props) {
   const [quantity, setQuantity] = useState(1);
+  const [notice, setNotice] = useState(false);
   const closeButton = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
 
@@ -39,15 +40,14 @@ export function ProductModal({ product, onClose }: Props) {
           <h2 id="modal-title">{product.name}</h2>
           <strong>{formatCurrency(product.price)}</strong>
           <p className="product-modal__description">{product.description}</p>
-          <p className="product-modal__availability">Disponível para consulta</p>
-          <div className="product-modal__quantity" aria-label="Quantidade">
+          <p className="product-modal__more">Veja mais detalhes do produto &gt;</p>
+          <div className="product-modal__actions"><div className="product-modal__quantity" aria-label="Quantidade">
             <button type="button" onClick={() => setQuantity((value) => Math.max(1, value - 1))} aria-label="Diminuir quantidade"><Minus size={16}/></button>
-            <span aria-live="polite">{quantity}</span>
+            <span aria-live="polite">{String(quantity).padStart(2, "0")}</span>
             <button type="button" onClick={() => setQuantity((value) => Math.min(99, value + 1))} aria-label="Aumentar quantidade"><Plus size={16}/></button>
           </div>
-          <p className="product-modal__total">Total: <strong>{formatCurrency(product.price * quantity)}</strong></p>
-          <button className="button button--primary" type="button" onClick={onClose}>CONTINUAR NAVEGANDO</button>
-          <span className="product-modal__note">Vitrine demonstrativa, sem finalização de compra.</span>
+          <button className="button button--primary product-modal__buy" type="button" onClick={() => setNotice(true)}>COMPRAR</button></div>
+          {notice && <p className="product-modal__note" role="status">Vitrine demonstrativa: compra não realizada. Total selecionado: {formatCurrency(product.price * quantity)}.</p>}
         </div>
       </div>
     </div>
