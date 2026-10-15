@@ -41,8 +41,7 @@ export default function App() {
   }), [products, search, activeCategory]);
 
   const visible = filtered.slice(offset, offset + 8);
-  const availableCategories = useMemo(() => new Set(products.map((item) => item.category?.toLocaleLowerCase('pt-BR')).filter(Boolean)), [products]);
-  const selectCategory = (category: string) => { setActiveCategory(availableCategories.has(category.toLocaleLowerCase('pt-BR')) ? category : 'Todas Categorias'); setOffset(0); setMenuOpen(false); document.getElementById('produtos')?.scrollIntoView({ behavior: 'smooth' }); };
+  const selectCategory = (category: string) => { setActiveCategory(category); setOffset(0); setMenuOpen(false); document.getElementById('produtos')?.scrollIntoView({ behavior: 'smooth' }); };
   const closeModal = useCallback(() => setSelected(null), []);
 
   return (
