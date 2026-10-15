@@ -1,31 +1,63 @@
-# Teste Econverse: Vaga Desenvolvedor Front-End
+# Teste Front-End — Econverse
 
-### Vem ser #Econverse!
+Vitrine de produtos desenvolvida com React, TypeScript e Sass para o teste técnico de Front-End da Econverse.
 
-Segue abaixo as instruções para a execução do teste.
+## Tecnologias
 
-## Instruções
-- Faça um fork desse projeto para a sua conta pessoal do GitHub.
-- Desenvolva a página conforme as **Especificações Técnicas** 
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail gustavo.cipriano@econverse.com.br com o título **Teste Vaga FrontEnd**
+- React 18 e TypeScript
+- Vite
+- Sass (SCSS)
+- Lucide React (ícones)
+- Vitest (testes unitários)
 
-## Especificações Técnicas
-- Desenvolver a pagina em React e TypeScript conforme o [layout](https://www.figma.com/file/rWnzPeoxgynuNPsJjV0VmV/Teste-Front-End-Jr?node-id=0%3A1). Para conseguir pegar os elementos do Figma, basta copiar o layout para sua conta que terá acesso de edição.
-- Montar a [vitrine](https://app.econverse.com.br/teste-front-end/junior/tecnologia/layout/vitrine-produtos.png) de produtos consumindo as informações dos produtos em json atraves desse [Link](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json).
-- Desenvolver a interação ao clicar em um produto conforme layout. A interação consiste em abrir um modal com as principais informações do produto presente no arquivo [JSON](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json) conforme o produto que clicar.
-- Utilizar Pré-processador Sass, Less ou Stylus.
-- Respeitar o Layout pixel a pixel, tamanho das fontes, cores e botões.
-- Não Utilizar bibliotecas UI como Bootstrap, Foundation, ou afins.
+## Executar localmente
 
-## Pontos Extras
-- Utilizar Boas práticas de SEO
-- Uso de HTML semântico
+Requisitos: Node.js 20.19+ ou 22.12+ e npm.
 
-## O que avaliaremos em seu teste
-- Organização do projeto
-- Lógica do código
-- Componentização
-- Alcance dos objetivos propostos
+```bash
+npm install
+npm run dev
+```
 
-**Boa sorte! ;)**
+Acesse o endereço informado pelo Vite (geralmente `http://localhost:5173`).
+
+## Verificação
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npm run preview
+```
+
+## Funcionalidades
+
+- Vitrine alimentada pelo JSON disponibilizado no enunciado.
+- Busca por nome e descrição, filtro por categoria (quando presente no JSON) e paginação.
+- Modal de detalhes do produto, com imagem, preço, descrição e controle de quantidade.
+- Estados de carregamento, falha com opção de tentar novamente e lista vazia.
+- Layout adaptado para desktop, tablet e celular.
+- Estrutura semântica, descrições de imagens, navegação por teclado e fechamento do modal por `Escape`.
+
+## Integração
+
+O catálogo é carregado diretamente de:
+
+`https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json`
+
+A camada `src/services/products.ts` valida e normaliza o JSON antes de enviar os dados para a interface. É necessário que o servidor de origem esteja disponível e permita acesso via navegador (CORS). Nenhum produto fictício é exibido quando a requisição falha.
+
+## Estrutura
+
+```text
+src/
+  components/     Cards e modal de produtos
+  services/       Requisição e normalização do catálogo
+  types/          Tipos TypeScript
+  App.tsx         Página e estados de interface
+  styles.scss     Estilos e breakpoints responsivos
+```
+
+## Observações
+
+O projeto é uma vitrine demonstrativa, sem checkout ou processamento de pedidos. O layout deve ser comparado com o arquivo Figma fornecido no enunciado antes da entrega definitiva.
